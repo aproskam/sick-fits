@@ -32,12 +32,10 @@ export default function Products() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
   return (
-    <div>
-      <ProductsListStyles>
-        {data.allProducts.map((product) => (
-          <Product product={product} key={product.id} />
-        ))}
-      </ProductsListStyles>
-    </div>
+    <ProductsListStyles>
+      {data.allProducts.map((product) => (
+        <Product product={product} key={product.id} />
+      ))}
+    </ProductsListStyles>
   );
 }
