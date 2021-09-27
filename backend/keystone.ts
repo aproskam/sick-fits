@@ -5,10 +5,12 @@ import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { CartItem } from './schemas/CartItem';
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
 import { insertSeedData } from './seed-data';
+import { sendPasswordResetEmail } from './lib/mail';
 
 const dbURL =
   process.env.DATABASE_URL ||
@@ -26,6 +28,13 @@ const { withAuth } = createAuth({
   initFirstItem: {
     fields: ['name', 'email', 'password'],
     //  TODO: change this for roles
+  },
+  passwordResetLink: {
+    async sendToken(args) {
+      console.log(args);
+      // send the email
+      await sendPasswordResetEmail(args.token, args.identity);
+    },
   },
 });
 
@@ -53,6 +62,7 @@ export default withAuth(
       User,
       Product,
       ProductImage,
+      CartItem,
     }),
     ui: {
       // Only show the uit only if you pass this test
