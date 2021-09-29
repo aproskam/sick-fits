@@ -28,8 +28,6 @@ export default function RequestReset() {
   async function handleSubmit(e) {
     e.preventDefault();
     const res = await resetPassword().catch(console.error);
-    console.log('res', res);
-    console.log({ data, error, loading });
     resetForm();
     // Send the email and password to the graphQL API
   }

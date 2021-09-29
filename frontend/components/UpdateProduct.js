@@ -47,7 +47,6 @@ export default function UpdateProduct({ id }) {
   ] = useMutation(UPDATE_PRODUCT_MUTATION);
   // 2.5 Create some state for the form inputs:
   const { inputs, handleChange } = useForm(data?.Product);
-  console.log(inputs);
 
   if (loading) return <p>Loading...</p>;
   // 3. We need the form to handle the updates
@@ -61,7 +60,6 @@ export default function UpdateProduct({ id }) {
         price: inputs.price,
       },
     }).catch(console.error);
-    console.log(res);
     // TODO: HANDLE SUBMIT!
     // const res = await createProduct();
     // clearForm();
