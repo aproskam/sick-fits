@@ -17,15 +17,11 @@ async function addToCart(
   // 2. Query the current users cart
   const allCartItems = await context.lists.CartItem.findMany({
     where: { user: { id: sesh.itemId }, product: { id: productId } },
-    resolveField: 'id,quantity',
+    resolveFields: 'id,quantity',
   });
-  console.log(productId);
-  console.log(allCartItems);
 
   const [existingCartItem] = allCartItems;
   if (existingCartItem) {
-    console.log(existingCartItem);
-
     console.log(
       `There are already ${existingCartItem.quantity}, increment by 1!`
     );

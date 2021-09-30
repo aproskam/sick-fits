@@ -51,7 +51,7 @@ const InnterStyles = styled.div`
   padding: 0 2rem;
 `;
 
-export default function Page({ children }) {
+export default function Page({ children, cool }) {
   return (
     <div>
       <GlobalStyles />
@@ -62,8 +62,6 @@ export default function Page({ children }) {
 }
 
 Page.propTypes = {
-  children: PropTypes.oneOf([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  cool: PropTypes.string,
+  children: PropTypes.any,
 };
